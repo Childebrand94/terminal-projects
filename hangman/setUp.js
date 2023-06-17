@@ -59,8 +59,6 @@ const hangmanPics = [
 =========`,
 ];
 
-console.log(hangmanPics[5]);
-
 module.exports = {
   wordBank,
   hangmanPics,
