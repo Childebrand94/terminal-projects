@@ -2,19 +2,28 @@ const prompt = require("prompt-sync")();
 
 const specialCharacters = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "=", "+", "[", "]", "{", "}", "|", "\\", ";", ":", "'", '"', ",", ".", "<", ">", "/", "?", "~", "`"];
 const alphabeticalCharacters = [...Array(26)].map((_, i) => String.fromCharCode(97 + i));
+const upperAlphabeticalCharacters = [...Array(26)].map((_, i) => String.fromCharCode(65 + i));
 const numbers = [...Array(10)].map((_, i) => i.toString());
-const passwordCharacters = [specialCharacters, alphabeticalCharacters, numbers];
-const randomIndex = (max) => Math.floor(Math.random() * max);
+const randomIndex = (limit) => Math.floor(Math.random() * limit);
 
-const length = prompt("How many characters is the password? : ");
+const n = prompt("How many characters is the password? : ");
+console.log(n);
 
 const passwordGen = (length) => {
-  const password = [...Array(length)].map((_) => {
-    let listChoice = passwordCharacters[randomIndex(passwordCharacters.length)];
-    console.log(listChoice);
-    return listChoice[randomIndex(listChoice.length)];
+  let password = [...Array(parseInt(length))].map(() => {
+    const randomNumber = randomIndex(10);
+    if (randomNumber >= 8) {
+      return alphabeticalCharacters[randomIndex(26)];
+    } else if (randomNumber >= 6 && randomNumber <= 8) {
+      return upperAlphabeticalCharacters[randomIndex(26)];
+    } else if (randomNumber > 2 && randomNumber < 6) {
+      return numbers[randomIndex(10)];
+    } else {
+      return specialCharacters[randomIndex(specialCharacters.length)];
+    }
   });
   return password.join("");
 };
-
-console.log(passwordGen(length));
+console.log();
+console.log(passwordGen(n));
+console.log();
