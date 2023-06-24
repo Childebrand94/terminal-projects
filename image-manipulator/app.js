@@ -1,6 +1,8 @@
 const sharp = require("sharp");
 const prompt = require("prompt-sync")();
 
+const functionChoice = prompt("What would you like to do to your image?: ");
+
 const getMetaData = async (file) => {
   try {
     const metaData = await sharp(file).metadata();
@@ -11,19 +13,25 @@ const getMetaData = async (file) => {
   }
 };
 
-const file = prompt("Please enter the file path: ");
-const width = Number(prompt("What is width: "));
-const height = Number(prompt("What is height: "));
-const output = prompt("What is the name of the new file: ");
+const resize = () => {
+  const file = prompt("Please enter the file path: ");
+  const width = Number(prompt("What is width: "));
+  const height = Number(prompt("What is height: "));
+  const output = prompt("What is the name of the new file: ");
 
-sharp(file)
-  .resize(width, height)
-  .toFile(output)
-  .then(() => {
-    console.log("Image resizing successful.");
-    getMetaData(output);
-  })
-  .catch((err) => {
-    console.log("Something went wrong");
-    console.log(err);
-  });
+  sharp(file)
+    .resize(width, height)
+    .toFile(output)
+    .then(() => {
+      console.log("Image resizing successful.");
+      getMetaData(output);
+    })
+    .catch((err) => {
+      console.log("Something went wrong");
+      console.log(err);
+    });
+};
+
+if (functionChoice === "resize") {
+  resize();
+}

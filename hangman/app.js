@@ -28,6 +28,7 @@ console.log(asciiArt);
 //Game variables
 let gameActive = true;
 const word = randomWord();
+console.log(word);
 const wordPlaceHolder = new Array(word.length).fill("_");
 const history = [];
 let attempts = 0;
