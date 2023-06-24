@@ -13,9 +13,9 @@ To install the game in your terminal, follow the steps below:
 
 ## Game Objective
 
-A random word will be generated for you. You have to guess the word my typing in letters. Every time a wrong letter if guessed a asci art of the hangman will be displayed. Guess all the correct letters to win the game.
+A random word will be generated for you. You have to guess the word by typing in letters. Every time a wrong letter is guessed, the asci art of the hangman will be displayed. Guess all the correct letters to win the game.
 
-At anytime quit can be typed into the terminal to end the game.
+`quit` can be typed into the terminal to end the game anytime.
 
 # Random Password Generator
 
@@ -30,4 +30,4 @@ To install use the projects in your terminal, follow the steps below:
 
 ## How to Use
 
-Type in the desired length of password and a randomly generated password will be printed to the terminal.
+You can type in the desired password length, and a randomly generated password will be printed to the terminal.
