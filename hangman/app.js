@@ -15,8 +15,8 @@ const checkLoss = (attempts) => {
     gameActive = false;
   }
 };
-const checkWin = (wordPlaceHolder, word) => {
-  if (wordPlaceHolder.join("") === word.join("")) {
+const checkWin = (wordPlaceHolder, guess, word) => {
+  if (wordPlaceHolder.join("") === word.join("") || guess === word.join("")) {
     console.log(`${word.join("")} is correct`);
     gameActive = false;
   }
@@ -28,19 +28,20 @@ console.log(asciiArt);
 //Game variables
 let gameActive = true;
 const word = randomWord();
-console.log(word);
 const wordPlaceHolder = new Array(word.length).fill("_");
 const history = [];
 let attempts = 0;
 
 // Uncomment for testing to show the word
-// console.log(word.join(""));
+console.log(word.join(""));
 
 // main game loop
 while (gameActive) {
+  console.log(wordPlaceHolder.join(" "));
   let guess = prompt("Guess a letter: ");
   //Check if player wants to quit
   checkExit(guess);
+  checkWin(wordPlaceHolder, guess, word);
   //Show player all of their past guess's
   history.push(guess);
   console.log(`You have guessed ${history}`);
@@ -54,7 +55,6 @@ while (gameActive) {
     // Show all correct guessed letter in word
     console.log(wordPlaceHolder.join(" "));
     // Check for win
-    checkWin(wordPlaceHolder, word);
     // Show current amount of wrong attempts through hangman asci art
     console.log(hangmanPics[attempts]);
   } else {
