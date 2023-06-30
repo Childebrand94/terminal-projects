@@ -33,7 +33,7 @@ const history = [];
 let attempts = 0;
 
 // Uncomment for testing to show the word
-console.log(word.join(""));
+// console.log(word.join(""));
 
 // main game loop
 while (gameActive) {
