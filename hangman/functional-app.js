@@ -9,13 +9,9 @@ const randomWord = () => {
 
 const intro = () => console.log(asciiArt);
 
-const instantWin = (guess = "", history, targetWord) => {
-  if (guess === targetWord) {
-    return true;
-  } else {
-    return targetWord.split("").every((letter) => history.includes(letter));
-  }
-};
+const instantWin = (guess, targetWord) => guess === targetWord;
+
+const historyWin = (targetWord, history) => targetWord.split("").every((letter) => history.includes(letter));
 
 const checkLoss = (attempts) => attempts >= 6;
 
@@ -46,11 +42,10 @@ const calculateAttempts = (targetWord, history) => {
 
 const checkExit = (guess) => (guess === "quit" ? true : false);
 
-const historyWin = (targetWord, history) => targetWord.split("").every((letter) => history.includes(letter));
+// *********** The Game ***********
 
-// The game
 const gameRound = (targetWord, history) => {
-  // this will end the game if the user has guess all letter individually
+  // end the game if the user has guessed all letter individually
   if (historyWin(targetWord, history)) {
     console.log("Congratulation you won");
     return;
@@ -59,16 +54,16 @@ const gameRound = (targetWord, history) => {
   showBlankWord(targetWord, history);
 
   // for testing to show the hidden word
-  // console.log(targetWord);
+  console.log(targetWord);
 
   const guess = prompt("Guess a letter: ");
 
-  // this will end the game if user types in the whole word at once
-  if (instantWin(guess, history, targetWord)) {
+  // end the game if user types in the whole word at once
+  if (instantWin(guess, targetWord)) {
     console.log("Congratulation you won");
     return;
   }
-  // showing the history of the user's pervious guesses
+  // display history of the user's pervious guesses
   console.log(`Your guessed letter: ${history}`);
 
   /* calculate the amount of attempts the user has had by counting the 
@@ -89,5 +84,6 @@ const gameRound = (targetWord, history) => {
   gameRound(targetWord, [...history, guess]);
 };
 
+// Start Game
 intro();
 gameRound(randomWord(), []);
