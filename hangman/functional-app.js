@@ -33,7 +33,7 @@ const showHangman = (attempts) => {
 const calculateAttempts = (targetWord, history) => {
   return history.reduce((acc, x) => {
     if (!targetWord.includes(x)) {
-      return (acc += 1);
+      return acc + 1;
     } else {
       return acc;
     }
